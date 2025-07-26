@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  mcp-gateway:
+    build: ./mcp_gateway
+    ports:
+      - "8800:80"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  agent-worker:
+    build:
+      context: ./agent_worker
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  redis_data:

@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.db
+/memory_api/*
+/ntfy/*
+/rclone/*
+/plugins/*
+/nocodb/*
+.vscode/
+.env
